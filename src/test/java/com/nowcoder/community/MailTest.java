@@ -43,4 +43,5 @@ public class MailTest {
 
         mailClient.sendMail("1121287904@qq.com","HTML",content);
     }
+
 }

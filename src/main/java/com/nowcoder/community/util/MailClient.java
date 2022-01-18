@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 
 /**
  * @ClassName MailClient
- * @Description
+ * @Description 使用配置好的参数自动发送邮件
  * @Author cjx
  * @Date 2022/1/11 22:53
  * @Version 1.0
