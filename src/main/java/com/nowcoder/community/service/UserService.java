@@ -21,7 +21,7 @@ import java.util.Random;
 
 /**
  * @ClassName UserService
- * @Description
+ * @Description  TODO 待添加账户设置中的修改密码功能
  * @Author cjx
  * @Date 2022/1/9 23:47
  * @Version 1.0
@@ -53,7 +53,7 @@ public class UserService implements CommunityConstant {
         if(StringUtils.isBlank(password)){
             map.put("passwordMsg","密码不能为空");
         }
-        //重置密码
+        //修改密码
         User user = userMapper.selectByEmail(email);
         userMapper.updatePassword(user.getId(),CommunityUtil.md5(password+user.getSalt()));
         map.put("user",user);
@@ -233,5 +233,24 @@ public class UserService implements CommunityConstant {
     //更新用户头像url
     public int updateHeader(int userId,String headUrl){
         return userMapper.updateHeader(userId,headUrl);
+    }
+
+    //用户修改密码
+    public Map<String,Object> modifyPassword(User user,String oldPassword,String newPassword){
+        Map<String,Object> map = new HashMap<>();
+        if(StringUtils.isBlank(oldPassword)){
+            map.put("oldPasswordMsg","原密码不为空!");
+            return map;
+        }
+        if(!user.getPassword().equals(CommunityUtil.md5(oldPassword+user.getSalt()))){
+            map.put("oldPasswordMsg","原密码输入错误，请重新输入!");
+            return map;
+        }
+        if(StringUtils.isBlank(newPassword)){
+            map.put("newPasswordMsg","新密码不能为空!");
+            return map;
+        }
+        userMapper.updatePassword(user.getId(),CommunityUtil.md5(newPassword+user.getSalt()));
+        return map;
     }
 }

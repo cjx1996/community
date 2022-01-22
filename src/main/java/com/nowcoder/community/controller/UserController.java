@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @ClassName UserController
@@ -111,6 +112,21 @@ public class UserController {
             }
         } catch (IOException e) {
             logger.error("读取头像失败：" + e.getMessage());
+        }
+    }
+
+    @RequestMapping(path="/modify",method=RequestMethod.POST)
+    public String modify(String oldPassword,String newPassword,Model model){
+        User user = hostHolder.getUser();
+        Map<String, Object> map = userService.modifyPassword(user, oldPassword, newPassword);
+        if(map==null||map.isEmpty()){
+            return "redirect:/logout";
+        }else{
+            System.out.println(map.get("oldPasswordMsg"));
+            System.out.println(map.get("newPasswordMsg"));
+            model.addAttribute("oldPasswordMsg",map.get("oldPasswordMsg"));
+            model.addAttribute("newPasswordMsg",map.get("newPasswordMsg"));
+            return "/site/setting";
         }
     }
 }
