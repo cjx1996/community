@@ -129,7 +129,7 @@ public class UserService implements CommunityConstant {
         user.setType(0);
         user.setStatus(0);
         user.setActivationCode(CommunityUtil.generateUUID());
-        user.setHeaderUrl(String.format("images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
+        user.setHeaderUrl(String.format("https://images.nowcoder.com/head/%dt.png", new Random().nextInt(1000)));
         user.setCreateTime(new Date());
         userMapper.insertUser(user);
 
@@ -223,5 +223,15 @@ public class UserService implements CommunityConstant {
     //登出
     public void logout(String ticket){
         loginTicketMapper.updateStatus(ticket,1);
+    }
+
+    //根据ticket得到LoginTicket
+    public LoginTicket findLoginTicket(String ticket){
+        return loginTicketMapper.selectByTicket(ticket);
+    }
+
+    //更新用户头像url
+    public int updateHeader(int userId,String headUrl){
+        return userMapper.updateHeader(userId,headUrl);
     }
 }
