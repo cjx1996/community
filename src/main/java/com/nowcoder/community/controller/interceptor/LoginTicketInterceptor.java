@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * @ClassName LoginTicketInterceptor
- * @Description
+ * @Description 拦截器判断是否有有效的登录ticket
  * @Author cjx
  * @Date 2022/1/20 16:45
  * @Version 1.0
