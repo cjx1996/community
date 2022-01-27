@@ -29,6 +29,15 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
 
     @Autowired
     private HostHolder hostHolder;
+
+    /**
+     * 在Controller处理前，先处理是否存在有效的ticket，如果有，就往hostHolder中存入User对象，在本次请求中该User对象都存在，并且是线程安全的。
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //从cookie中获取凭证
@@ -56,6 +65,14 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
         }
     }
 
+    /**
+     * 本次请求处理完毕，从bean对象hostholder中删除User类型数据user
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         hostHolder.clear();
