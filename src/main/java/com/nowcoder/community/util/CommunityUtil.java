@@ -1,15 +1,17 @@
 package com.nowcoder.community.util;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
-import org.json.JSONObject;
+import org.springframework.lang.Nullable;
 import org.springframework.util.DigestUtils;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 /**
  * @ClassName CommunityUtil
- * @Description  工具类：静态方法：生成随机字符串和md5加密
+ * @Description  工具类：静态方法：生成随机字符串和md5加密/生成json字符串
  * @Author cjx
  * @Date 2022/1/12 1:04
  * @Version 1.0
@@ -41,7 +43,9 @@ public class CommunityUtil {
         return json.toString();
     }
 
-    public static String getJSONString(int code, String msg){
+
+
+    public static String getJSONString(int code,@Nullable String msg){
         return getJSONString(code, msg, null);
     }
 

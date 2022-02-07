@@ -57,6 +57,14 @@ public class LoginTicketInterceptor implements HandlerInterceptor {
     }
 
 
+    /**
+     *  从容器中得到User对象，如果存在有效登录对象，就将对象传递给Model
+     * @param request
+     * @param response
+     * @param handler
+     * @param modelAndView
+     * @throws Exception
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
         User user = hostHolder.getUser();
