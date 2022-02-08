@@ -71,18 +71,16 @@ public class LoginController implements CommunityConstant {
     public String resetPassword(String email, String verifyCode, String password, Model model, HttpSession session) {
         String code = (String) session.getAttribute("verifyCode");
         if (StringUtils.isBlank(code) || StringUtils.isBlank(verifyCode) || !code.equalsIgnoreCase(verifyCode)) {
-            model.addAttribute("verifyCode", "验证码错误");
+            model.addAttribute("verifyCodeMsg", "验证码错误");
             return "/site/forget";
         }
         Map<String, Object> map = userService.resetPassword(email, password);
         if (map.containsKey("user")) {
-//           //TODO 这里可以修改为转向operate-result.html页面，更符合常见结果
-          /*
+
             model.addAttribute("msg","修改密码成功!");
             model.addAttribute("target","/login");
             return "/site/operate-result";
-            */
-            return "redirect:/login";
+//            return "redirect:/login";
         } else {
             model.addAttribute("passwordMsg", map.get("passwordMsg"));
             return "/site/forget";

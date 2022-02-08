@@ -52,6 +52,7 @@ public class UserService implements CommunityConstant {
         //空值处理
         if(StringUtils.isBlank(password)){
             map.put("passwordMsg","密码不能为空");
+            return map;
         }
         //修改密码
         User user = userMapper.selectByEmail(email);
