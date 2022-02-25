@@ -19,7 +19,7 @@ import java.util.Date;
  * @Version 1.0
  */
 @Controller
-@RequestMapping(path="/comment")
+@RequestMapping(path = "/comment")
 public class CommentController {
     @Autowired
     private CommentService commentService;
@@ -27,14 +27,14 @@ public class CommentController {
     @Autowired
     private HostHolder hostHolder;
 
-    @RequestMapping(path="/add/{discussPostId}",method= RequestMethod.POST)
-    public String addComment(@PathVariable("discussPostId")int discussPostId, Comment comment){
-            comment.setUserId(hostHolder.getUser().getId());
-            comment.setStatus(0);
-            comment.setCreateTime(new Date());
-        System.out.println(comment);
-            commentService.addComment(comment);
-            return "redirect:/discuss/detail/"+discussPostId;
+    @RequestMapping(path = "/add/{discussPostId}", method = RequestMethod.POST)
+    public String addComment(@PathVariable("discussPostId") int discussPostId, Comment comment) {
+        comment.setUserId(hostHolder.getUser().getId());
+        comment.setStatus(0);
+        comment.setCreateTime(new Date());
+
+        commentService.addComment(comment);
+        return "redirect:/discuss/detail/" + discussPostId;
     }
 
 

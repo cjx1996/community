@@ -1,13 +1,7 @@
 package com.nowcoder.community;
 
-import com.nowcoder.community.dao.CommentMapper;
-import com.nowcoder.community.dao.DiscussPostMapper;
-import com.nowcoder.community.dao.LoginTicketMapper;
-import com.nowcoder.community.dao.UserMapper;
-import com.nowcoder.community.entity.Comment;
-import com.nowcoder.community.entity.DiscussPost;
-import com.nowcoder.community.entity.LoginTicket;
-import com.nowcoder.community.entity.User;
+import com.nowcoder.community.dao.*;
+import com.nowcoder.community.entity.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.internal.SuppressSignatureCheck;
@@ -43,6 +37,9 @@ public class MapperTest {
 
     @Autowired
     private CommentMapper commentMapper;
+
+    @Autowired
+    private MessageMapper messageMapper;
     @Test
     public void testSelectUser() {
         User user = userMapper.selectById(101);
@@ -115,4 +112,26 @@ public class MapperTest {
         }
     }
 
+    @Test
+    public void testSelectLetter(){
+        List<Message> list = messageMapper.selectConversations(111, 0, 20);
+        for (Message message : list) {
+            System.out.println(message);
+        }
+        System.out.println("------------------");
+        int cnt = messageMapper.selectConversationCount(111);
+        System.out.println("cnt:"+cnt);
+        System.out.println("----------------------------");
+        List<Message> messages = messageMapper.selectLetters("111_112", 0, 20);
+        for (Message message : messages) {
+            System.out.println(message);
+        }
+        System.out.println("-----------------------");
+        int cnt2 = messageMapper.selectLetterCount("111_112");
+        System.out.println("cnt2:"+cnt2);
+        System.out.println("------------------------");
+        int unRead = messageMapper.selectLetterUnreadCount(131 ,"111_131");
+        System.out.println(unRead);
+        System.out.println("unRead:"+unRead);
+    }
 }
