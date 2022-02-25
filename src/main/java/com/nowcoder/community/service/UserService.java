@@ -145,6 +145,8 @@ public class UserService implements CommunityConstant {
         mailClient.sendMail(user.getEmail(), "激活账号", content);
         //如果map为空，表明注册没有问题
         return map;
+
+
     }
 
 
@@ -253,5 +255,9 @@ public class UserService implements CommunityConstant {
         }
         userMapper.updatePassword(user.getId(),CommunityUtil.md5(newPassword+user.getSalt()));
         return map;
+    }
+
+    public User findUserByName(String username){
+        return userMapper.selectByName(username);
     }
 }
