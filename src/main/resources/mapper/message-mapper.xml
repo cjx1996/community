@@ -76,4 +76,8 @@
             #{id}
         </foreach>
     </update>
+
+    <delete id="deleteMessage">
+        delete from message where id=#{id}
+    </delete>
 </mapper>
