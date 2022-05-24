@@ -8,7 +8,7 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 /**
  * @ClassName RedisConfig
- * @Description
+ * @Description redis数据的序列化与反序列化设置
  * @Author cjx
  * @Date 2022/4/9 10:25
  * @Version 1.0

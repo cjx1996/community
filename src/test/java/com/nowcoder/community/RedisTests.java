@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * @ClassName RedisTests
  * @Description
@@ -95,7 +96,7 @@ public class RedisTests {
     }
 
     @Test
-    public void tostKeys(){
+    public void testKeys(){
         redisTemplate.delete("test:user");
 
         System.out.println(redisTemplate.hasKey("test:user"));
