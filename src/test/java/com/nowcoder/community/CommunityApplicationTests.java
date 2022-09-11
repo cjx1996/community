@@ -41,6 +41,7 @@ class CommunityApplicationTests implements ApplicationContextAware {
         AlphaDao alphaDao1 = (AlphaDao) applicationContext.getBean("alphaHibernate");
         System.out.println(alphaDao1.select());
 
+
     }
 
     @Test
