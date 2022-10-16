@@ -103,7 +103,7 @@ public class DiscussPostController implements CommunityConstant {
         model.addAttribute("likeCount",likeCount);
 
         //点赞状态
-        int likeStatus=user==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_POST,discussPostId);
+        int likeStatus=hostHolder.getUser()==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_POST,discussPostId);
         model.addAttribute("likeStatus",likeStatus);
 
         //查评论的分页信息
@@ -132,7 +132,7 @@ public class DiscussPostController implements CommunityConstant {
                 commentVo.put("likeCount",likeCount);
 
                 //点赞状态
-                 likeStatus=user==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_COMMENT,comment.getId());
+                 likeStatus=hostHolder.getUser()==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_COMMENT,comment.getId());
                  commentVo.put("likeStatus",likeStatus);
 
                 //回复列表
@@ -153,7 +153,7 @@ public class DiscussPostController implements CommunityConstant {
                         replyVo.put("likeCount",likeCount);
 
                         //点赞状态
-                        likeStatus=user==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_COMMENT,reply.getId());
+                        likeStatus=hostHolder.getUser()==null?0:likeService.findEntityLikeStatus(hostHolder.getUser().getId(),ENTITY_TYPE_COMMENT,reply.getId());
                         replyVo.put("likeStatus",likeStatus);
 
                         //回复目标

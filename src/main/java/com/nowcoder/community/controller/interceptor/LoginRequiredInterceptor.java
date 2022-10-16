@@ -13,11 +13,12 @@ import java.lang.reflect.Method;
 
 /**
  * @ClassName LoginRequiredInterceptor
- * @Description
+ * @Description 不再需要该拦截器，由Security接手了授权方面的配置
  * @Author cjx
  * @Date 2022/1/24 23:01
  * @Version 1.0
  */
+@Deprecated
 @Component
 public class LoginRequiredInterceptor implements HandlerInterceptor {
     @Autowired

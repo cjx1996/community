@@ -31,6 +31,9 @@ public class ExceptionAdvice {
             logger.error(element.toString());
         }
 
+        //判断请求是异步请求还是普通请求
+        //异步请求返回json
+        //同步请求返回html页面
         String xRequestedWith = request.getHeader("x-requested-with");
         if("XMLHttpRequest".equals(xRequestedWith)){
             response.setContentType("application/plain;charset=utf-8");
